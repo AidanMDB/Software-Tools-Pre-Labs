@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Correct Folder Names",
+      "setup": "",
+      "run": "ls  | grep -Ev \"Prelab[0-1][0-9]\" | grep -Ev \"README.md\" | wc -l",
+      "input": "",
+      "output": "0",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    }
+  ]
+}
