@@ -13,7 +13,7 @@ import sys # Each one on a line
 # ONLY FUNCTIONS BEYOND THIS POINT !
 # ######################################################
 
-def writePyramids (filePath, baseSize: int, count: int, char: str) -> float :
+def writePyramids (filePath: str, baseSize: int, count: int, char: str):
     pyramid_char = []
 
     for i in range(0, baseSize, 2):
@@ -24,7 +24,7 @@ def writePyramids (filePath, baseSize: int, count: int, char: str) -> float :
     file = open(filePath, "w")
 
     for line in pyramid_char:
-        for i in range(count):
+        for i in range(count): 
 
             file.write(line)
             if i != count - 1:      # makes sure space doesn't end up at the end of the line
@@ -34,8 +34,30 @@ def writePyramids (filePath, baseSize: int, count: int, char: str) -> float :
 
     file.close()
 
+def getStreaks(sequence: str, letters: str) -> list:
+    all_streaks = []
+
+    temp_letter = sequence[0]
+    streak = ""
+
+    for letter in sequence:             # generates every streak of letters and puts them in a list
+        if temp_letter == letter: 
+            streak += letter
+        else:
+            all_streaks.append(streak)
+            temp_letter = letter
+            streak = letter
+    all_streaks.append(streak)
 
 
+    streak_list = []
+
+    for stk in all_streaks:             # checks if the letters matches the streaks
+        for let in letters:
+            if let == stk[0]:
+                streak_list.append(stk)
+
+    return streak_list
 
 # This block is optional and can be used for testing .
 # We will NOT look into its content .
@@ -43,4 +65,8 @@ def writePyramids (filePath, baseSize: int, count: int, char: str) -> float :
 # Write anything here to test your code .
     
 
-writePyramids("pyramid13_test.txt", 13, 6, 'X')
+#writePyramids("pyramid13_test.txt", 13, 6, 'X')
+#writePyramids("puramid15_test.txt", 15, 5, "*")
+
+sequence = "AAASSSSSSAPPPSSPPBBCCCSSS"
+print(getStreaks(sequence, "PAZ"))
