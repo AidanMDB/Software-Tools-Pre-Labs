@@ -54,11 +54,21 @@ p {
   margin-bottom: 20px;
 }
 
+.greenRow5{
+  flex: 1;
+  background-color: green;
+}
+
 .redRow5 {
-  width: 40px;
   height: 40px;
+  width: 40px;
+  margin-top: 10px;
   background-color: red;
-  justify-content: center;
+}
+
+.redRow6 {
+  flex: 1;
+  background-color: red;
 }
 
 .blueRow6 {
@@ -76,25 +86,31 @@ p {
 
 .greenRow7 {
   flex: 1;
+  height: 20px;
+  margin-top: 20px;
   background-color: green;
 }
 
 .orangeRow8 {
   width: 80px;
   background-color: orange;
-  justify-content: space-between;
 }
 
-.greenRow9 {
-  width: 20px;
+.greenRow8 {
+  flex: 1;
   background-color: green;
-  justify-content: space-around;
+}
+
+
+.greenRow9 {
+  width: 80px;
+  background-color: green;
+
 }
 
 .orangeRow9 {
-  display: flex;
-  height: 60px;
+  flex: 1;
   background-color: orange;
-  margin-bottom: 20px;
 }
+
 
