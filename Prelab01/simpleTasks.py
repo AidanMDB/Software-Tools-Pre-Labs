@@ -66,7 +66,7 @@ def getStreaks(sequence: str, letters: str) -> list:
     
 
 #writePyramids("pyramid13_test.txt", 13, 6, 'X')
-#writePyramids("puramid15_test.txt", 15, 5, "*")
+#writePyramids("pyramid15_test.txt", 15, 5, "*")
 
-sequence = "AAASSSSSSAPPPSSPPBBCCCSSS"
-print(getStreaks(sequence, "PAZ"))
+#sequence = "AAASSSSSSAPPPSSPPBBCCCSSS"
+#print(getStreaks(sequence, "PAZ"))
