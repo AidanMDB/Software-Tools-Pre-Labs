@@ -1,0 +1,5 @@
+# ignore any .txt files
+*.txt
+
+# ignore any files in the directory named build
+build/
