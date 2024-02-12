@@ -311,11 +311,19 @@ def getCircuitByStudent(studentNames):
 def getCircuitByComponent(componentIDs):
     """Q9: Returns the set of circuit IDs that have used any of the given components."""
 
+    circuits_with_components = set()
+    for circuit in os.scandir("circuits"):
+        file = open(circuit, 'r')
+        contents = set(file.read().split())
 
+        if len(componentIDs.intersection(contents)) != 0:
+            circuits_with_components.add(os.path.basename(circuit)[8:15])
 
-    
-    result = set([test_circuitID])
-    return result
+            
+
+        file.close()
+
+    return circuits_with_components
 
 
 # ######################################################
