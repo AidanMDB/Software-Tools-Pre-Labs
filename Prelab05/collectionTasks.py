@@ -212,9 +212,7 @@ def getCostOfProjects():
 
     for project in project_cost:
         project_cost[project] = round(project_cost[project], 2)
-    sample_project_cost = 8.444218515250482
-    # Example of rounding a float to 2 decimal places
-    final_dict = {test_projectID: round(sample_project_cost, 2)}
+
     return project_cost
 
 
@@ -350,7 +348,7 @@ if __name__ == "__main__":
     # print(getParticipationByProject(test_projectID))
     # {'James, Randy', 'Collins, Anthony', 'Long, Joshua', ...}
     # print("")
-    # print(getCostOfProjects())
+    print(getCostOfProjects())
     # {'56B13184-D087-48DB-9CBA-84B40FE17CC5': 355.36, ...}
     # print("")
     # print(getProjectByComponent({test_component}))
