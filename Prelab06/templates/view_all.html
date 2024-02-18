@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+    <table>
+        {% for fname, lname, idval, email in data.items() %}
+        <tr>    
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>
+            <td>{{email}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</html>
