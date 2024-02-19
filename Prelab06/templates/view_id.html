@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 
 <html>
-    <table>
-        <tr>
-            <td>{{data[0]}}</td>
-            <td>{{data[1]}}</td>
-            <td>{{data[2]}}</td>
-            <td>{{data[3]}}</td>
-        </tr>
-    </table>
-    <a>
-        <button>Delete Employee Information</button>
-    </a>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        tr {
+            border: 1px solid black;
+            background-color: lightgray;
+        }
+
+        td {
+            font-size: xx-large;
+            border: 1px solid black;
+            width: 50%
+        }
+
+        button {
+            font-size: xx-large;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+    <body>
+
+        <h1>Employee Information</h1>
+        <table>
+            <tr>
+                <td>{{data[0]}} {{data[1]}}</td>
+                <td>{{data[3]}}</td>
+            </tr>
+        </table>
+        <form method="POST" action="/delete">
+            <button type="submit" name="ecode" value="{{data[2]}}">Delete Employee Information</button>
+        </form>
+    </body>
 </html>

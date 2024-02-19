@@ -36,14 +36,23 @@ def insert_employee_data(first_name, last_name, id, email):
     conn.close()
 
 
-
-""" 
-@app.route("/view", methods=['GET', 'POST'])
+'''
+@app.route('/view', methods=['GET'])
 def view():
-    ecode = flask.request.args.get('emp_id')    
-    return flask.redirect(f"/view/{ecode}")
- """
+    return flask.render_template('view_request.html')
 
+@app.route('/view', methods=['POST'])
+def view_sub():
+    id = flask.request.form['emp_id']
+    return flask.redirect(f"/view/{id}")
+'''
+
+
+@app.route("/view", methods=['GET'])
+def view_id():
+    ecode = flask.request.args.get('emp_id')
+    print(ecode)
+    return flask.redirect(f"/view/{ecode}")
 
 @app.route("/view/<ecode>", methods=['GET', 'POST'])
 def view_dynamic_employee(ecode):
@@ -55,7 +64,7 @@ def fetch_employee(ecode):
     conn = sqlite3.connect("data/company.db")
     c = conn.cursor()
     employee = None
-    employee = c.execute(f"SELECT first_name,last_name,email from employees where id={ecode}").fetchone()
+    employee = c.execute(f"SELECT first_name,last_name,id,email from employees where id={ecode}").fetchone()
 
     if employee is None:
         raise ValueError(f"employee {ecode} does not exist")
@@ -64,13 +73,16 @@ def fetch_employee(ecode):
     conn.close()
     return employee
 
-def delete_employee(ecode):
+@app.route("/delete", methods=['POST'])
+def delete_employee():
+    id = flask.request.form['ecode']
     conn = sqlite3.connect("data/company.db")
     c = conn.cursor()
-    c.execute(f"DELETE FROM employees WHERE id={ecode}")
+    c.execute(f"DELETE FROM employees WHERE id={id}")
     c.close()
     conn.commit()
     conn.close()
+    return flask.redirect('/')
 
 
 @app.route("/view_all", methods=['GET'])
