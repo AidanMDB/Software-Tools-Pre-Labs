@@ -76,6 +76,7 @@ def fetch_employee(ecode):
 @app.route("/delete", methods=['POST'])
 def delete_employee():
     id = flask.request.form['ecode']
+    
     conn = sqlite3.connect("data/company.db")
     c = conn.cursor()
     c.execute(f"DELETE FROM employees WHERE id={id}")
