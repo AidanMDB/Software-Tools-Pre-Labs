@@ -17,16 +17,15 @@ def insert_user(hashed_id, first_name, last_name, email):
     conn.close()
 
 def find_user(hashed_id):
-    try:
-        conn = sqlite3.connect("Part2/data/users.db")
-        c = conn.cursor()
-        c.execute("SELECT EXISTS (SELECT 1 from user_info where user_id=?)", (hashed_id, ))
-        c.close()
-        conn.close()
-        print("yes")
-        return True
-    except:
+    conn = sqlite3.connect("Part2/data/users.db")
+    c = conn.cursor()
+    val = c.execute("SELECT EXISTS (SELECT * from user_info where user_id=?)", (hashed_id, )).fetchone()
+    c.close()
+    conn.close()
+    if val[0] == 0:
         return False
+    else:
+        return True
 
 def get_user(hashed_id):
     conn = sqlite3.connect("Part2/data/users.db")
@@ -41,7 +40,7 @@ def get_user_posts(hash_id):
     conn = sqlite3.connect("Part2/data/users.db")
     c = conn.cursor()
     user = None
-    user = c.execute(f"SELECT * FROM user_posts WHERE user_id=?", (hash_id, )).fetchall()
+    user = c.execute(f"SELECT * FROM user_posts WHERE user_id=? ORDER BY date DESC", (hash_id, )).fetchall()
     c.close()
     conn.close()
     return user
@@ -134,7 +133,8 @@ def create_post_sub(ucode):
 @app.route('/posts/<postcode>', methods=['GET'])
 def view_post(postcode):
     full_post = get_post(postcode)
-    return flask.render_template('post_page.html', post=full_post)
+    name = get_user(full_post[0])[0]
+    return flask.render_template('post_page.html', post=full_post, user=name)
 
 
 if __name__ == '__main__':
