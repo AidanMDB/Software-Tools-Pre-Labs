@@ -31,7 +31,7 @@ jobs:
         pytest
     - name: Build coverage file
       run: |
-        pytest --cache-clear --cov=Prelab08/src/ Prelab08/tests/ --cov-report=html
+        pytest --cache-clear --cov=src/ tests/ --cov-report=html
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3
       with:
