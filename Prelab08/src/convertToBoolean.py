@@ -13,7 +13,7 @@
 def converToBoolean(num, size):
     if not (isinstance(num, int) and isinstance(size, int)):
         raise ValueError("Inputs should be integers")
-    
+
     binary_rep = f'{num:{size}b}'
     bool_list = []
     for b in binary_rep:
