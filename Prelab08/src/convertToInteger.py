@@ -13,7 +13,7 @@
 def convertToInteger(boolList):
     if not isinstance(boolList, list) or boolList == []:
         return None
-    
+
     if not all(isinstance(element, bool) for element in boolList):
         return None
 
