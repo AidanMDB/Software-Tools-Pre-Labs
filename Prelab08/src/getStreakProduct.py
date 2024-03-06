@@ -16,11 +16,13 @@ def calc_product(sequence):
         calc *= int(digit)
     return calc
 
+
 def sub_sequences(sequence, size):
     sub_sequences = []
     for i in range(len(sequence) - size + 1):
         sub_sequences.append((sequence[i:i+size], i))
     return sub_sequences
+
 
 def sort_subsequences(index):
     return index[1]
@@ -34,7 +36,7 @@ def getStreakProduct(sequence, maxsize, product):
             if calc_product(sub[0]) == product:
                 matching.append(sub)
 
-    matching.sort(key=sort_subsequences)   
+    matching.sort(key=sort_subsequences)
     return [match[0] for match in matching]
 
 
