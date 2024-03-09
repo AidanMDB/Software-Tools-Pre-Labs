@@ -1,0 +1,4 @@
+One method of sanitizing the sql inputs is to parameterize the
+queries. This seperates the query from the user input. 
+I could also have if statements ensuring the user inputs
+are only of the necessary type i.e.(int or float)
