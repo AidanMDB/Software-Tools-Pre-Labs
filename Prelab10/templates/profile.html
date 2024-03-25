@@ -1,0 +1,41 @@
+<html>
+    <script src="../static/bonus.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%
+        }
+    
+        td,
+        th {
+            font-size: xx-large;
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            width: 33%;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        button {
+            text-align: right;            
+        }
+    </style>
+    <body>
+
+        <h1>User: {{data[0]}}, {{data[1]}}</h1>
+        <h2>{{data[2]}}</h2>
+        <a href="/{{id}}/create">
+            <button onclick="/ucode/create">Create</button>
+        <a>
+
+        {% for i in range(posts|length) %}
+        <p id="postid{{i}}" onclick="bonus('{{i}}', '{{posts[i][3]}}', '{{posts[i][4]}}', '{{posts[i][1]}}')">{{posts[i][2]}}
+            <div id="postval{{i}}" hidden></div> <!--use this to add and subtract things dynamically-->
+        </p>
+        {% endfor %}
+
+    </body>
+</html>

@@ -1,0 +1,9 @@
+magnetic-port-418218_cloudbuild
+https://first-tvkhmo3h2q-ue.a.run.app
+containers are more portable and faster to startup and shutdown
+vm's are good for isolated applications and have their own kernel
+service - first	   0.01  	us-east1	Allow unauthenticated	All	   4 minutes ago	adannhausenbrun@gmail.com
+from - Create a new build stage from a base image.
+run - to execute commands during the build process of a Docker image.
+copy -  lets us copy a file (or files) from the host system into the image.
+workdir - sets the current working directory for subsequent instructions in the Dockerfile.
