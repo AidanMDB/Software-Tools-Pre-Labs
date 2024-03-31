@@ -8,6 +8,9 @@
 # ######################################################
 # Write your sequence of statements here .
 
+
+# if [check if the file is there]
+#       for error handling
 frist_count=$(bash getComponentUseCount.sh $1)
 second_count=$(bash getComponentUseCount.sh $2)
 

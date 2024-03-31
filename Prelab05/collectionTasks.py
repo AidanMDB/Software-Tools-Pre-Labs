@@ -6,16 +6,13 @@
 # ######################################################
 
 import os  # List of module import statements
-import sys  # Each one on a line
-import re
-import glob
-import string
-import math
 
 # ######################################################
 # No Module - Level Variables or Statements !
 # ONLY FUNCTIONS BEYOND THIS POINT !
 # ######################################################
+# automatically run flake8 with autopep8 -i <filename>
+
 
 # helper functions
 def readProjects():
@@ -29,10 +26,12 @@ def readProjects():
                 project_circuit[id].append(circuit)
             else:
                 project_circuit[id] = [circuit]
-    
+
     return project_circuit
 
+
 def readStudents():
+    """Gets all the students names and ids in a dictionary"""
     name_id = dict()
     with open("maps/students.dat", 'r') as file:
         # skip over header lines
@@ -42,7 +41,8 @@ def readStudents():
             last, first, seperator, id = line.split()
             name_id[f"{last} {first}"] = id
 
-    return name_id  
+    return name_id
+
 
 def readStudentsID():
     name_id = dict()
@@ -54,10 +54,12 @@ def readStudentsID():
             last, first, seperator, id = line.split()
             name_id[id] = f"{last} {first}"
 
-    return name_id  
+    return name_id
+
 
 def readComponent(componentSymbol):
-    component_map = {'T':"maps/transistors.dat", 'I':"maps/inductors.dat", 'R':"maps/resistors.dat", 'C':"maps/capacitors.dat"}
+    component_map = {'T': "maps/transistors.dat", 'I': "maps/inductors.dat",
+                     'R': "maps/resistors.dat", 'C': "maps/capacitors.dat"}
     component_file = open(component_map[componentSymbol], 'r')
     # skip over headers
     next(component_file)
@@ -69,7 +71,7 @@ def readComponent(componentSymbol):
     for line in component_file.readlines():
         id, price = line.split()
         component_dict[id] = float(price[1:5])
-    
+
     component_file.close()
     return component_dict
 
@@ -104,7 +106,7 @@ def getComponentCountByProject(projectID, componentSymbol):
             for line in circuit_file:
                 if line.strip() in component_type:
                     component_set.add(line.strip())
-  
+
     result = len(component_set)
     return result
 
@@ -126,9 +128,10 @@ def getComponentCountByStudent(studentName, componentSymbol):
         contents = file.read()
         # if the id is in the circuit get the components needed
         if student_id in contents:
-            component_list.update(component_type.intersection(set(contents.split())))
+            component_list.update(
+                component_type.intersection(set(contents.split())))
         file.close()
-    
+
     result += len(component_list)
 
     return result
@@ -140,7 +143,7 @@ def getParticipationByStudent(studentName):
     student_id = readStudents()[studentName]
     if not student_id:
         raise ValueError("student name does not exist.")
-    
+
     circuits_participated = []
     for circuit in os.scandir("circuits"):
         file = open(circuit, 'r')
@@ -151,8 +154,7 @@ def getParticipationByStudent(studentName):
             circuits_participated.append(os.path.basename(circuit)[8:15])
 
         file.close()
-    
-    
+
     result = set()
     project_dict = readProjects()
     for circuit in circuits_participated:
@@ -160,7 +162,6 @@ def getParticipationByStudent(studentName):
             if circuit in project_dict[projects]:
                 result.add(projects)
 
-    
     return result
 
 
@@ -170,7 +171,7 @@ def getParticipationByProject(projectID):
     if not circuit_list:
         raise ValueError("Project does not exist.")
 
-    student_dict = readStudentsID() # [id] = name
+    student_dict = readStudentsID()  # [id] = name
 
     student_name_set = set()
     for circuit in circuit_list:
@@ -196,7 +197,6 @@ def getCostOfProjects():
     for project in project_dict:
         project_cost[project] = 0
 
-    
     for p_name, c_list in project_dict.items():
         for circuit in c_list:
             circ_file = open(f"circuits/circuit_{circuit}.dat")
@@ -218,14 +218,13 @@ def getCostOfProjects():
 
 def getProjectByComponent(componentIDs: set):
     """Q6: Returns the set of project IDs that have used any of the given components."""
-    
 
     circuit_list = []
 
     for circuit in os.scandir("circuits"):
         file = open(circuit, 'r')
         contents = file.read()
-        
+
         if len(componentIDs.intersection(set(contents.split()))) != 0:  # if their is any intersection
             circuit_list.append(os.path.basename(circuit)[8:15])
         file.close()
@@ -237,11 +236,10 @@ def getProjectByComponent(componentIDs: set):
             if circuit in circ:
                 result.add(proj)
 
-    
     return result
 
 
-def getCommonByProject(projectID1, projectID2):
+def getCommonByProject(projectID1 : str, projectID2 : str):
     """Q7: Returns the sorted list of components that are common to both projects."""
     result = 0
 
@@ -296,10 +294,9 @@ def getCircuitByStudent(studentNames):
         contents = file.read()
 
         # if the id is in the circuit get the components needed
-        for id in student_id:    
+        for id in student_id:
             if id in contents:
                 circuits_participated.add(os.path.basename(circuit)[8:15])
-            
 
         file.close()
 
@@ -316,8 +313,6 @@ def getCircuitByComponent(componentIDs):
 
         if len(componentIDs.intersection(contents)) != 0:
             circuits_with_components.add(os.path.basename(circuit)[8:15])
-
-            
 
         file.close()
 

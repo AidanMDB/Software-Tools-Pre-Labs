@@ -15,6 +15,8 @@ fi
 
 cd maps
 
+# if [check for projects.dat]
+#   for error handling to make sure its there
 grep $1 projects.dat | awk '{print $1}' | sort -u
 
 

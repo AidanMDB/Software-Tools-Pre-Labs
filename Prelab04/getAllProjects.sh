@@ -10,4 +10,6 @@
 
 echo "$(egrep -o "[A-Z0-9]+-[A-Z0-9]+-[A-Z0-9]+-[A-Z0-9]+-[A-Z0-9]+" $1 | sort -u | tr -d '-')"
 
+# awk command 
+
 exit 0
