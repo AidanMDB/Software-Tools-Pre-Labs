@@ -1,4 +1,9 @@
-
+# ######################################################
+# Author :  Aidan Dannhausen-Brun
+# email :   adannhau@purdue.edu
+# ID :      ee364a10
+# Date :    3/31/24
+# ######################################################
 
 # from gcloud_connector import connect_with_connector
 from sqlalchemy.orm import Session
@@ -6,6 +11,11 @@ from sqlalchemy import select, create_engine
 from student import Student, create_table
 
 GCLOUD_MODE = False
+
+# ######################################################
+# No Module - Level Variables or Statements !
+# ONLY FUNCTIONS BEYOND THIS POINT !
+# ######################################################
 
 
 def create_local_engine():
@@ -44,6 +54,11 @@ def updateID(engine, student1: Student, ID: int):
         student1.studentID = ID
 
         session.commit()
+
+
+# This block is optional and can be used for testing .
+# We will NOT look into its content .
+# ######################################################
 
 
 if __name__ == "__main__":
