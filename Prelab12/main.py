@@ -49,6 +49,7 @@ def find_instr_dir(direction):
 
     return directions
 
+
 def create_csv(directions, results):
     with open('result_file.csv', 'w') as f:
         csv_writer = csv.writer(f)
@@ -106,6 +107,7 @@ def submit_locs():
 @app.route('/results', methods=['POST'])
 def download():
     return flask.send_from_directory(path='', directory='',filename='result_file.csv')
+
 
 # This block is optional and can be used for testing .
 # We will NOT look into its content .
