@@ -50,5 +50,7 @@
         </tr>
         {% endfor %}
     </table>
-    <a href="/result_file" download="result_file.csv">Download</a>
+    <form method="POST" action="/results">
+        <input type="submit" value="Download">
+    </form>
 </html>

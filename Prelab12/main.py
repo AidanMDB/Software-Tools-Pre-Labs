@@ -105,7 +105,7 @@ def submit_locs():
 
 @app.route('/results', methods=['POST'])
 def download():
-    return flask.send_file('result_file.csv', as_attatchment=True)
+    return flask.send_from_directory(path='', directory='',filename='result_file.csv')
 
 # This block is optional and can be used for testing .
 # We will NOT look into its content .
