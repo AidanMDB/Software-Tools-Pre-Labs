@@ -42,14 +42,21 @@ def find_10_results(nearby):
     return places_10
 
 
+def find_instr_dir(direction):
+    directions = []
+    for step in direction[0]['legs'][0]['steps']:
+        directions.append({'instruction': step['html_instructions'], 'distance': step['distance']['text']})
+
+    return directions
+
 def create_csv(directions, results):
-    with open('results.csv', 'w') as f:
+    with open('result_file.csv', 'w') as f:
         csv_writer = csv.writer(f)
         
         header = ['instruction', 'distance']
         csv_writer.writerow(header)
         for step in directions[0]['legs'][0]['steps']:
-            pp(step)
+            #pp(step)
             dir_instr_list = [step['html_instructions'], step['distance']['text']]
             csv_writer.writerow(dir_instr_list)
         
@@ -90,15 +97,15 @@ def submit_locs():
 
     nearby_places = gmaps.places(location = f"{latitude}, {longitude}", radius=100, open_now=False, type='restaurant')
     top_10 = find_10_results(nearby_places)
-
+    dir = find_instr_dir(direction_results)
     create_csv(direction_results, top_10)
 
-    return flask.render_template('results.html', nearby_locs=top_10)
+    return flask.render_template('results.html', nearby_locs=top_10, instr_dist=dir)
 
 
-@app.route('/download', methods=['POST'])
+@app.route('/download')
 def download():
-    return flask.send_from_directory('results.csv', as_attatchment=True)
+    return flask.send_from_directory(app.config['.'], 'result_file.csv', as_attatchment=True)
 
 # This block is optional and can be used for testing .
 # We will NOT look into its content .

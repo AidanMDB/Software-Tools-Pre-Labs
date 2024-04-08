@@ -27,6 +27,19 @@
     <h1>Results</h1>
     <table>
         <tr>   
+            <td>Instruction</td>
+            <td>Distance</td>
+        </tr> 
+        {% for instr in instr_dist %}
+        <tr>    
+            <td>{{instr['instruction']}}</td>
+            <td>{{instr['distance']}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <table>
+        <tr>   
             <td>Name</td>
             <td>Rating</td>
         </tr> 
@@ -37,5 +50,5 @@
         </tr>
         {% endfor %}
     </table>
-    <a href="{{ url_for('download') }}" download="results.csv">Download</a>
+    <a href="{{ url_for('download') }}" download="result_file.csv">Download</a>
 </html>
